@@ -1,0 +1,137 @@
+clear all
+diary devre_Soru_2_a.txt
+Line_Empedans = 5 + 1.885j
+Load_A_Empedans = (19+10) + j*377*(77+10)*10.^-3
+Empedans = Line_Empedans + Load_A_Empedans
+Va = 110 % volt
+Ia_Complex = Va / Empedans % amper
+Ia_phase_degree = atand( imag(Ia_Complex)/
+real(Ia_Complex))
+Ia_Genlik = abs(Ia_Complex)
+VAN_Complex = Va - (Ia_Complex * Line_Empedans) %volt
+VAN_phase_degree = atand ( (imag(VAN_Complex)) /
+real(VAN_Complex) )
+VAN_genlik = abs(VAN_Complex)
+Iaconj = conj(Ia_Complex)
+KomplexP_A = VAN_Complex *Iaconj % VA birim
+AktiveP_A = real(KomplexP_A) % WATT birim
+ReaktiveP_A = imag(KomplexP_A) % VAR birim
+ApperentP_A = sqrt((ReaktiveP_A.^2) + AktiveP_A.^2)
+VA
+%Power_Factor_A = AktiveP_A/ApperentP_A
+%phasedifferenceVoltageAndCurrent =
+acosd(Power_Factor_A) % degree
+% 2. kisim
+Compansation_Empedans = -1j*(VAN_genlik.^2 /
+ReaktiveP_A )% Xc Vkare/reaktif P
+New_Load_A_Empedans = (Load_A_Empedans *
+Compansation_Empedans ) / ( Load_A_Empedans +
+Compansation_Empedans )
+New_Empedans = Line_Empedans + New_Load_A_Empedans
+New_Ia_Complex = Va / New_Empedans
+New_Ia_phase_degree =
+atand(imag(New_Ia_Complex)/real(New_Ia_Complex))
+New_Ia_genlik = abs(New_Ia_Complex)
+New_VAN_Complex = New_Ia_Complex*New_Load_A_Empedans
+New_VAN_phase_degree =
+atand(imag(New_VAN_Complex)/real(New_VAN_Complex))
+New_VAN_Genlik = abs(New_VAN_Complex)
+newIaconj = conj(New_Ia_Complex)
+New_KomplexP_A = New_VAN_Complex*newIaconj
+New_AktiveP_A = real(New_KomplexP_A) % WATT birim
+New_ReaktiveP_A = imag(New_KomplexP_A) % VAR birim
+New_ApperentP_A = sqrt((New_ReaktiveP_A.^2) +
+New_AktiveP_A.^2)
+diary off
+
+clear all
+diary devre_Soru_2_b.txt
+Line_Empedans = 5 + 1.885j
+Load_B_Empedans = (19) + j*377*(77)*10.^-3
+Empedans = Line_Empedans + Load_B_Empedans
+Vb = -55 + 55*sqrt(3)*j % volt
+Ib_Complex = Vb / Empedans % amper
+Ib_phase_degree = atand( imag(Ib_Complex)/
+real(Ib_Complex))
+Ib_Genlik = abs(Ib_Complex)
+VBN_Complex = Vb - (Ib_Complex * Line_Empedans) %volt
+VBN_phase_degree = atand ( (imag(VBN_Complex)) /
+real(VBN_Complex) )
+VBN_genlik = abs(VBN_Complex)
+Ibconj = conj(Ib_Complex)
+KomplexP_B = VBN_Complex *Ibconj % VA birim
+AktiveP_B = real(KomplexP_B) % WATT birim
+ReaktiveP_B = imag(KomplexP_B) % VAR birim
+ApperentP_B = sqrt((ReaktiveP_B.^2) + AktiveP_B.^2) 
+% VA
+%Power_Factor_A = AktiveP_A/ApperentP_A
+%phasedifferenceVoltageAndCurrent =
+acosd(Power_Factor_A) % degree
+% 2. kisim
+Compansation_Empedans = -1j*(VBN_genlik.^2 /
+ReaktiveP_B )% Xc Vkare/reaktif P
+New_Load_B_Empedans = (Load_B_Empedans *
+Compansation_Empedans ) / ( Load_B_Empedans +
+Compansation_Empedans )
+New_Empedans = Line_Empedans + New_Load_B_Empedans
+New_Ib_Complex = Vb / New_Empedans
+New_Ib_phase_degree =
+atand(imag(New_Ib_Complex)/real(New_Ib_Complex))
+New_Ib_genlik = abs(New_Ib_Complex)
+New_VBN_Complex = New_Ib_Complex*New_Load_B_Empedans
+New_VBN_phase_degree =
+atand(imag(New_VBN_Complex)/real(New_VBN_Complex))
+New_VBN_Genlik = abs(New_VBN_Complex)
+newIbconj = conj(New_Ib_Complex)
+New_KomplexP_B = New_VBN_Complex*newIbconj
+New_AktiveP_B = real(New_KomplexP_B) % WATT birim
+New_ReaktiveP_B = imag(New_KomplexP_B) % VAR birim
+New_ApperentP_B = sqrt((New_ReaktiveP_B.^2) +
+New_AktiveP_B.^2)
+diary off
+
+clear all
+diary devre_Soru_2_c_sikki.txt
+Line_Empedans = 5 + 1.885j
+Load_C_Empedans = (19+20) + j*377*(77+30)*10.^-3
+Empedans = Line_Empedans + Load_C_Empedans
+Vc = -55 - 55*sqrt(3)*j % volt
+Ic_Complex = Vc / Empedans % amper
+Ic_phase_degree = atand( imag(Ic_Complex)/
+real(Ic_Complex))
+Ic_Genlik = abs(Ic_Complex)
+VCN_Complex = Vc - (Ic_Complex * Line_Empedans) %volt
+VCN_phase_degree = atand ( (imag(VCN_Complex)) /
+real(VCN_Complex) )
+VCN_genlik = abs(VCN_Complex)
+Icconj = conj(Ic_Complex)
+KomplexP_C = VCN_Complex *Icconj % VA birim
+AktiveP_C = real(KomplexP_C) % WATT birim
+ReaktiveP_C = imag(KomplexP_C) % VAR birim
+ApperentP_C = sqrt((ReaktiveP_C.^2) + AktiveP_C.^2)
+%VA
+%Power_Factor_A = AktiveP_A/ApperentP_A
+%phasedifferenceVoltageAndCurrent =
+acosd(Power_Factor_A) % degree
+% 2. kisim
+Compansation_Empedans = -1j*(VCN_genlik.^2 /
+ReaktiveP_C )% Xc Vkare/reaktif P
+New_Load_C_Empedans = (Load_C_Empedans *
+Compansation_Empedans ) / ( Load_C_Empedans +
+Compansation_Empedans )
+New_Empedans = Line_Empedans + New_Load_C_Empedans
+New_Ic_Complex = Vc / New_Empedans
+New_Ic_phase_degree =
+atand(imag(New_Ic_Complex)/real(New_Ic_Complex))
+New_Ic_genlik = abs(New_Ic_Complex)
+New_VCN_Complex = New_Ic_Complex*New_Load_C_Empedans
+New_VCN_phase_degree =
+atand(imag(New_VCN_Complex)/real(New_VCN_Complex))
+New_VCN_Genlik = abs(New_VCN_Complex)
+newIcconj = conj(New_Ic_Complex)
+New_KomplexP_C = New_VCN_Complex*newIcconj
+New_AktiveP_C = real(New_KomplexP_C) % WATT birim
+New_ReaktiveP_C = imag(New_KomplexP_C) % VAR birim
+New_ApperentP_C = sqrt((New_ReaktiveP_C.^2) +
+New_AktiveP_C.^2)
+diary off
